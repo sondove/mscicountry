@@ -54,7 +54,12 @@ def getIndicies(d):
 def list_indices(ixs):
     print "Indices (%s):" % (curCat,)
     for x in ixs:
-        print " %s (%s)" % (x['name'], x['id'])
+        xid = x['id']
+        try:
+            xid = int(float(x['id']))
+        except:
+            pass
+        print " %s (%s)" % (x['name'], xid)
 
 if args.list_categories:
     list_categories()
@@ -90,7 +95,11 @@ if not args.query:
 # regex match against indices and and print results
 # if unique match print country constituents
 
-q = ' '.join(args.query)
+if isinstance( args.query, basestring):
+    q = args.query
+else:
+    q = ' '.join(args.query)
+
 qp = re.compile('.*' + q + '.*', flags=re.IGNORECASE)
 
 matched = []
