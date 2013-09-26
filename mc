@@ -63,7 +63,6 @@ if args.list_categories:
 if args.category:
     try:
         ncat = [x['name'] for x in categories if x['shortname'] == args.category][0]
-        print ncat
 
         reqURL = baseURL + [x['url'] for x in categories if x['shortname'] == args.category][0]
 
