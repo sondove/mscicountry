@@ -18,7 +18,7 @@ parser.add_argument('-li','--list-indices',
         action='store_true',
         required=False)
 parser.add_argument('query', metavar='query',
-        nargs='?',
+        nargs='*',
         help='the search string to match'
         )
 
@@ -105,7 +105,7 @@ qp = re.compile('.*' + q + '.*', flags=re.IGNORECASE)
 matched = []
 
 for x in ixs:
-    if qp.match(x['name']):
+    if qp.match(x['name'] + " " + x['id']):
         matched.append(x)
 
 if len(matched) > 1:
