@@ -111,9 +111,7 @@ if len(matched) == 1:
     sel = 'c'+idx['id']
 
     # hack to work around use of punctuations in 
-
     col = filter(lambda d: pq(d).attr('id') == sel, d('div'))
-    #col = map(lambda d: pq(d).attr('id'), col)
 
     if len(col) != 1:
         print "ERROR: more than one table matched id"
@@ -122,8 +120,8 @@ if len(matched) == 1:
     s = pq(col[0])
     col = s.find('td.result').map(lambda i, d: d.text)
 
-    #print countries
     print "Country constituents for %s:" % (idx['name'])
+
     for c in col:
         print c
 
