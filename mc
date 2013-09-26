@@ -18,7 +18,7 @@ parser.add_argument('-li','--list-indices',
         action='store_true',
         required=False)
 parser.add_argument('query', metavar='query',
-        nargs='+',
+        nargs='?',
         help='the search string to match'
         )
 
@@ -56,7 +56,6 @@ def list_indices(ixs):
     for x in ixs:
         print " %s (%s)" % (x['name'], x['id'])
 
-
 if args.list_categories:
     list_categories()
     sys.exit(0)
@@ -64,6 +63,7 @@ if args.list_categories:
 if args.category:
     try:
         ncat = [x['name'] for x in categories if x['shortname'] == args.category][0]
+        print ncat
 
         reqURL = baseURL + [x['url'] for x in categories if x['shortname'] == args.category][0]
 
@@ -83,6 +83,10 @@ if args.list_indices:
     list_indices(ixs)
     sys.exit(0)
 
+
+if not args.query:
+    print "No instructions given, use -h for help"
+    sys.exit(0)
 
 # regex match against indices and and print results
 # if unique match print country constituents
@@ -124,8 +128,4 @@ if len(matched) == 1:
 
     for c in col:
         print c
-
-
-
-
 
