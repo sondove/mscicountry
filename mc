@@ -95,10 +95,7 @@ if not args.query:
 # regex match against indices and and print results
 # if unique match print country constituents
 
-if isinstance( args.query, basestring):
-    q = args.query
-else:
-    q = ' '.join(args.query)
+q = ' '.join(args.query)
 
 qp = re.compile('.*' + q + '.*', flags=re.IGNORECASE)
 
